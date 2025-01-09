@@ -1,2 +1,1 @@
-# E-commerce Angular + C-Sharp
- 
+# E-commerce

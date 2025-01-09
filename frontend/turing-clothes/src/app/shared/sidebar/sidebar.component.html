@@ -1,0 +1,48 @@
+<br>
+<div class="container-fluid">
+  <div class="row">
+    <nav class="col-12 col-md-3 col-lg-2 vh-100 d-none d-md-block">
+      <div class="d-flex flex-column align-items-start p-3">
+        <h4>Opciones</h4>
+        <ul class="nav flex-column w-100">
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="'/admin/users'">Usuarios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="'/admin/products'">Productos</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="col-12 d-md-none">
+      <button
+        class="btn btn-dark bg-dark w-100 my-2"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#responsiveSidebar"
+        aria-expanded="false"
+        aria-controls="responsiveSidebar"
+      >
+        Opciones
+      </button>
+      <div class="collapse" id="responsiveSidebar">
+        <div class="p-3">
+          <ul class="nav flex-column w-100">
+            <li class="nav-item">
+              <a class="nav-link text-primary" [routerLink]="'/admin/users'"
+                >Usuarios</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-primary" [routerLink]="'/admin/products'"
+                >Productos</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <br>
+  </div>
+</div>

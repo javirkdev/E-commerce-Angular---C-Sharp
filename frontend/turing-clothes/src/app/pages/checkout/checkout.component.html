@@ -1,0 +1,60 @@
+<!-- <h1>Pasarela de pago</h1>
+
+@if (sessionId) {
+  <section>
+    <h2>Compra realizada con éxito</h2>
+    <button (click)="reload()">Volver a comprar</button>
+  </section>
+}
+@else if (product) {
+  <section>
+    <h2>Vas a comprar esto:</h2>
+    <img [src]="product.image">
+    <h3>{{product.name}} {{product.price}}€</h3>
+    <p>{{product.description}}</p>
+  -->
+@if (payment === "card") {
+  <div #checkoutDialog class="w-100 p-4" style="height: 100%;">
+    <button (click)="cancelCheckoutDialog()">Cancelar</button>
+    <div id="checkout"></div>
+  </div>
+} @else {
+  <div #checkoutDialog class="w-100 p-4" style="height: 100%;">
+    <button (click)="cancelCheckoutDialog()">Cancelar</button>
+    <div id="checkout"></div>
+  </div>
+  <div class="container mt-5">
+    <h3 class="mb-4 text-center">Resumen de tu compra</h3>
+    <div class="row">
+        @for (item of purchaseInfo.temporaryOrder.details; track item.id) {
+      <div
+        class="col-md-4 mb-3"
+      >
+        <div class="card h-100 text-center border-0 shadow-sm">
+          <img
+            src="{{item.product.image}}"
+            class="card-img-top p-3"
+            alt="Imagen de producto"
+            style="height: 200px; object-fit: contain;"
+          />
+          <div class="card-body">
+            <h5 class="card-title fw-bold">{{ item.product.name }}</h5>
+            <p class="card-text mb-1">Cantidad: <span class="fw-light">{{ item.amount }}</span></p>
+            <p class="card-text text-muted">€ {{ item.product.price / 100 }}</p>
+          </div>
+        </div>
+      </div>
+    }
+    </div>
+    <div class="mt-4 text-center">
+      <h4 class="fw-bold">Total a pagar: {{ purchaseInfo.totalPrice }} €</h4>
+      <h4 class="fw-bold">Valor actual de Ethereum en Euros: {{ purchaseInfo.ethereumPrice }} €</h4>
+      <h4 class="fw-bold">Total a pagar: {{purchaseInfo.priceInWei}} Eth</h4>
+      <button class="btn btn-dark mt-3 px-4 py-2 mb-5" (click)="createTransaction()">
+        Proceder al pago
+      </button>
+    </div>
+  </div>
+  
+}
+

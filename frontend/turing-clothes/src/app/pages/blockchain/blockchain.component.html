@@ -1,0 +1,32 @@
+<div class="container mt-5">
+  <h3 class="mb-4">Resumen de tu compra</h3>
+  <div class="row">
+      @for (item of cartItems; track item.id) {
+    <div
+      class="col-md-4 mb-3"
+    >
+      <div class="card h-100 text-center border-0 shadow-sm">
+        <img
+          src="{{item.image}}"
+          class="card-img-top p-3"
+          alt="Imagen de producto"
+          style="height: 200px; object-fit: contain;"
+        />
+        <div class="card-body">
+          <h5 class="card-title fw-bold">{{ item.name }}</h5>
+          <p class="card-text mb-1">Cantidad: <span class="fw-light">{{ item.quantity }}</span></p>
+          <p class="card-text text-muted">€ {{ item.price }}</p>
+        </div>
+      </div>
+    </div>
+  }
+  </div>
+  <div class="mt-4">
+    <h4 class="fw-bold">Total a pagar: € {{ getTotal() }}</h4>
+    <h4 class="fw-bold">Total a pagar: Eth </h4>
+    <button class="btn btn-dark mt-3 px-4 py-2 mb-5" (click)="proceedToPayment()">
+      Proceder al pago
+    </button>
+  </div>
+</div>
+

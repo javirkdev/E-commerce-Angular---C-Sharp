@@ -1,0 +1,57 @@
+<div class="container my-5">
+    <header class="text-center mb-5">
+        <h1 class="fw-bold text-dark">Perfil de Usuario</h1>
+    </header>
+
+
+    <section class="user-info mb-5">
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-dark text-white">
+                <h2 class="h4 m-0">Información del Usuario</h2>
+            </div>
+            <div class="card-body bg-white">
+                <p class="mb-2"><strong>Nombre: </strong>{{user.name}}</p>
+                <p class="mb-2"><strong>Apellidos: </strong>{{user.surname}}</p>
+                <p class="mb-2"><strong>Correo electrónico: </strong>{{user.email}}</p>
+                <p class="mb-2"><strong>Dirección: </strong>{{user.address}}</p>
+                @if (user.role === "admin") {
+                <p><strong>Rol: </strong>Administrador</p>
+                }
+                <div class="d-flex justify-content-center gap-3 mt-3">
+                    <a href="#" class="btn btn-outline-dark" [routerLink]="'/user/edit'">Modificar datos</a>
+                    <a href="#" class="btn btn-outline-dark" [routerLink]="'/user/password'">Cambiar contraseña</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="user-orders">
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-dark text-white">
+                <h2 class="h4 m-0">Pedidos</h2>
+            </div>
+            @for (order of user.orders; track order.id) {
+            <div class="card-body bg-white">
+                <div class="mb-4 p-3 border rounded">
+                    <p class="mb-1"><strong>Fecha de pago:</strong> {{order.dateTime | date : "dd/MM/yyyy"}} </p>
+                    <p class="mb-1"><strong>Total:</strong> {{order.totalPrice/100}} €</p>
+                    <p><strong>Método de pago:</strong> {{order.paymentMethod == 'card' ? 'Tarjeta de crédito' : 'Ethereum'}}</p>
+                    <h3 class="h5 mt-3">Productos:</h3>
+                    @for (product of order.orderDetails; track $index) {
+                    <div class="forproduct" class="d-flex align-items-center border-bottom pb-2 mb-2">
+                        <img [src]="apiUrl + product.product.image" [alt]="product.product.name" class="me-3 rounded"
+                            style="width: 50px; height: 50px; object-fit: cover;">
+                        <div>
+                            <p class="m-0"><strong>Nombre:</strong> {{product.product.name}}</p>
+                            <p class="m-0"><strong>Cantidad:</strong> {{product.amount}}</p>
+                            <p class="m-0"><strong>Precio unitario:</strong> {{product.product.price/100}}</p>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+            }
+        </div>
+    </section>
+
+</div>

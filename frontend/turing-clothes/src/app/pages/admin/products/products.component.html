@@ -1,0 +1,70 @@
+<div class="container-fluid my-4">
+  <div class="row">
+    <div class="col-12 col-md-3 col-lg-2">
+      <app-sidebar></app-sidebar>
+    </div>
+
+    <div class="col-12 col-md-9 col-lg-10">
+      <h2 class="mb-4 text-center text-md-start">Gestión de Productos</h2>
+      <p class="text-muted text-center text-md-start">
+        Aquí puedes ver y gestionar los productos disponibles en el sistema.
+      </p>
+
+      <div class="mb-3 text-center text-md-start">
+        <a
+          class="btn btn-dark bi bi-plus"
+          [routerLink]="'/admin/products/add-new-product'"
+        >
+          Agregar Producto
+        </a>
+      </div>
+
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-hover align-middle">
+              <thead class="table-light">
+                <tr>
+                  <th>ID</th>
+                  <th>Imagen</th>
+                  <th>Nombre</th>
+                  <th>Precio</th>
+                  <th>Stock</th>
+                  <th class="text-center">Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (product of products; track product.id) {
+                <tr>
+                  <td>{{ product.id }}</td>
+                  <td>
+                    <img
+                      [src]="product.image"
+                      alt="Imagen del Producto"
+                      class="img-fluid"
+                      style="max-width: 50px; height: auto"
+                    />
+                  </td>
+                  <td>{{ product.name }}</td>
+                  <td>{{ product.price / 100 }} €</td>
+                  <td>{{ product.stock }}</td>
+                  <td class="text-center">
+                    <a
+                      class="btn btn-outline-dark btn-sm me-2"
+                      title="Editar Producto"
+                      [routerLink]="'/admin/products/update-product'"
+                      [queryParams]="{ productId: product.id }"
+                    >
+                      <i class="bi bi-pencil-square"></i>
+                    </a>
+                  </td>
+                </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

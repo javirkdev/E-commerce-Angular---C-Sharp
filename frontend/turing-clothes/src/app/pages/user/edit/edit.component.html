@@ -1,0 +1,66 @@
+<div class="container my-5">
+  <header class="text-center mb-5">
+    <h1 class="fw-bold text-dark">Editar Perfil de Usuario</h1>
+  </header>
+
+  <section class="user-info mb-5">
+    <div class="card shadow-sm border-0 mx-auto" style="max-width: 600px;">
+      <div class="card-header bg-dark text-white">
+        <h2 class="h4 m-0 text-center">Modificar Información</h2>
+      </div>
+      <div class="card-body bg-white">
+        <form>
+
+          <div class="mb-3 d-flex align-items-center">
+            <label for="userName" class="form-label fw-bold me-3" style="width: 100px;">Nombre:</label>
+            <input type="text" id="userName" class="form-control flex-grow-1 me-2" [(ngModel)]="userInfo.name"
+              [ngModelOptions]="{standalone:true}" [disabled]="!editName" required />
+            <button type="button" class="btn btn-sm btn-dark" (click)="editName = !editName">
+              {{ editName ? 'Cancelar' : 'Editar' }}
+            </button>
+
+          </div>
+
+          <div class="mb-3 d-flex align-items-center">
+            <label for="userSurname" class="form-label fw-bold me-3" style="width: 100px;">Apellidos:</label>
+            <input type="text" id="userSurname" class="form-control flex-grow-1 me-2" [(ngModel)]="userInfo.surname"
+              [ngModelOptions]="{standalone:true}" [disabled]="!editSurname" required />
+            <button type="button" class="btn btn-sm btn-dark" (click)="editSurname = !editSurname">
+              {{ editSurname ? 'Cancelar' : 'Editar' }}
+            </button>
+          </div>
+
+          <div class="mb-3 d-flex align-items-center">
+            <label for="userEmail" class="form-label fw-bold me-3" style="width: 100px;">Correo:</label>
+            <input type="email" id="userEmail" class="form-control flex-grow-1 me-2" [(ngModel)]="userInfo.email"
+              [ngModelOptions]="{standalone:true}" [disabled]="!editEmail" required />
+            <button type="button" class="btn btn-sm btn-dark" (click)="editEmail = !editEmail">
+              {{ editEmail ? 'Cancelar' : 'Editar' }}
+            </button>
+          </div>
+
+          <div class="mb-3 d-flex align-items-center">
+            <label for="userAddress" class="form-label fw-bold me-3" style="width: 100px;">Dirección:</label>
+            <input type="text" id="userAddress" class="form-control flex-grow-1 me-2" [(ngModel)]="userInfo.address"
+              [ngModelOptions]="{standalone:true}" [disabled]="!editAddress" required />
+            <button type="button" class="btn btn-sm btn-dark" (click)="editAddress = !editAddress">
+              {{ editAddress ? 'Cancelar' : 'Editar' }}
+            </button>
+          </div>
+        </form>
+
+        <div class="text-center mt-4">
+          <button type="button" class="btn btn-dark" [disabled]="!editName && !editEmail && !editAddress &&!editSurname"
+            (click)="saveChanges()">
+            Guardar Cambios
+          </button>
+          @if (userInfo.name === '' || userInfo.email === '' || userInfo.surname ==='' || userInfo.address ==='') {
+          <div class="alert alert-danger mt-3">
+            <strong>¡Error!</strong> Todos los campos son obligatorios.
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

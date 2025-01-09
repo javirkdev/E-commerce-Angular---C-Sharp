@@ -1,0 +1,68 @@
+<div class="container-fluid my-4">
+  <div class="row">
+    <div class="col-12 col-md-3 col-lg-2">
+      <app-sidebar></app-sidebar>
+    </div>
+
+    <div class="col-12 col-md-9 col-lg-10">
+      <h2 class="mb-4 text-center text-md-start">Gestión de Usuarios</h2>
+
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead class="table-dark">
+            <tr>
+              <th>#</th>
+              <th>Nombre</th>
+              <th>Email</th>
+              <th>Rol</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (user of users; track user.id) {
+            <tr>
+              <td>{{ user.id }}</td>
+
+              <td>{{ user.name + " " + user.surname }}</td>
+
+              <td>{{ user.email }}</td>
+
+              <td>
+                <div class="d-flex align-items-center">
+                  <label class="me-3">
+                    <input
+                      type="radio"
+                      name="role-{{ user.id }}"
+                      [checked]="user.role === 'admin'"
+                      (change)="changeUserRole(user.email, 'admin')"
+                    />
+                    Admin
+                  </label>
+                  <label>
+                    <input
+                      type="radio"
+                      name="role-{{ user.id }}"
+                      [checked]="user.role === 'user'"
+                      (change)="changeUserRole(user.email, 'user')"
+                    />
+                    User
+                  </label>
+                </div>
+              </td>
+
+              <td>
+                <button
+                  class="btn btn-danger btn-sm"
+                  (click)="deleteUser(user.email)"
+                >
+                  Eliminar
+                </button>
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<section>
+  <div class="container-fluid login-container d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="login-form shadow p-4 bg-white rounded" style="min-width: 100px; width: 400px; max-width: 85%;">
+      <h3 class="text-center mb-4">Iniciar Sesión</h3>
+      <form (submit)="submit()">
+        <div class="mb-3">
+          <label for="email" class="form-label">Correo Electrónico</label>
+          <input type="email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" class="form-control" id="email"
+            placeholder="Correo electrónico">
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Contraseña</label>
+          <input type="password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" class="form-control"
+            id="password" placeholder="Contraseña">
+        </div>
+        <div class="mb-3 form-check">
+          <input type="checkbox" [(ngModel)]="remember" [ngModelOptions]="{standalone: true}" class="form-check-input"
+            id="rememberMe">
+          <label class="form-check-label" for="rememberMe">Recuérdame</label>
+        </div>
+        <button type="submit" class="btn btn-outline-light bg-dark text-white w-100">Ingresar</button>
+      </form>
+      <p class="text-center mt-3">
+        <a class="text-black" href="register">Registrarse</a>
+      </p>
+    </div>
+  </div>
+</section>

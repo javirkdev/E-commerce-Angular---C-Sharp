@@ -1,0 +1,84 @@
+<div class="container-fluid login-container d-flex justify-content-center align-items-center my-5"
+  style="min-height: 100vh">
+  <div class="login-form shadow p-4 bg-white rounded w-100" style="max-width: 500px">
+    <h3 class="text-center mb-4">Registro de Usuario</h3>
+    <form [formGroup]="myForm" (ngSubmit)="submit()">
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Nombre</label>
+        <input type="user" formControlName="name" class="form-control" id="nombre" />
+      </div>
+
+      <div *ngIf="myForm.get('name').invalid && registerHints" class="error">
+        <div *ngIf="myForm.get('name').hasError('required')">
+          El nombre es obligatorio.
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Apellido</label>
+        <input type="userLastName" formControlName="surname" class="form-control" id="apellido" />
+      </div>
+
+      <div *ngIf="myForm.get('surname').invalid && registerHints" class="error">
+        <div *ngIf="myForm.get('surname').hasError('required')">
+          Debe introducir un apellido como mínimo.
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Correo Electrónico</label>
+        <input type="email" formControlName="email" class="form-control" id="correoId" />
+      </div>
+
+      <div *ngIf="myForm.get('email').invalid && registerHints" class="error">
+        <div *ngIf="myForm.get('email').hasError('required')">
+          El correo electrónico es obligatorio.
+        </div>
+        <div *ngIf="myForm.get('email').hasError('email')">
+          Tiene que ser un email válido.
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="inputPassword" class="form-label">Contraseña</label>
+        <input type="password" formControlName="password" id="inputPassword5" class="form-control"
+          aria-describedby="passwordHelpBlock" />
+      </div>
+
+      <div *ngIf="myForm.get('password').invalid && registerHints" class="error">
+        <div *ngIf="myForm.get('password').hasError('required')">
+          La contraseña es obligatoria.
+        </div>
+        <div *ngIf="myForm.get('password').hasError('minlength')">
+          La contraseña debe tener mínimo 6 caracteres.
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="inputPassword" class="form-label">Confirmar contraseña</label>
+        <input type="password" formControlName="confirmPassword" id="inputPasswordConfirm" class="form-control"
+          aria-describedby="passwordHelpBlock" />
+      </div>
+
+      <div *ngIf="myForm.get('confirmPassword').invalid" class="error">
+        <div *ngIf="myForm.get('confirmPassword').hasError('mismatch')">
+          Debe coincidir con la contraseña.
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Dirección</label>
+        <input id="direction" class="form-control" formControlName="address" type="address" />
+      </div>
+
+      <div *ngIf="myForm.get('address').invalid && registerHints" class="error">
+        <div *ngIf="myForm.get('address').hasError('required')">
+          La dirección es obligatoria.
+        </div>
+      </div>
+
+      <button id="registerbutton" type="submit" class="btn bg-dark btn-light w-100 text-white">Registrarse</button>
+      <!-- ESTO ESTÁ POR VER LA ANIMACIÓN NO SE VE-->
+    </form>
+  </div>
+</div>
